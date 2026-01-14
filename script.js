@@ -15,6 +15,19 @@ function updateGreeting() {
     greetingElement.textContent = `${greeting}, Wilkister`;
 }
 
+// Load API key from config file
+let unsplashAccessKey = '';
+
+async function loadConfig() {
+    try {
+        const response = await fetch('/config.json');
+        const config = await response.json();
+        unsplashAccessKey = config.unsplashAccessKey;
+    } catch (error) {
+        console.error('Error loading config:', error);
+    }
+}
+
 // Fetch a random background image from Unsplash
 async function fetchBackground() {
     const backgroundContainer = document.getElementById('backgroundContainer');
@@ -22,7 +35,7 @@ async function fetchBackground() {
     
     try {
         // Using Unsplash API - free access tier
-        const response = await fetch('https://api.unsplash.com/photos/random?client_id=YOUR_UNSPLASH_ACCESS_KEY&query=nature,landscape&orientation=landscape');
+        const response = await fetch(`https://api.unsplash.com/photos/random?client_id=${unsplashAccessKey}&query=nature,landscape&orientation=landscape`);
         
         if (!response.ok) {
             throw new Error(`API error: ${response.status}`);
@@ -109,7 +122,8 @@ async function fetchQuote() {
 }
 
 // Initialize all features on page load
-document.addEventListener('DOMContentLoaded', () => {
+document.addEventListener('DOMContentLoaded', async () => {
+    await loadConfig();
     updateGreeting();
     fetchBackground();
     fetchQuote();
