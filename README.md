@@ -48,7 +48,7 @@ This project demonstrates key browser extension capabilities:
 
 ## Future Ideas
 
-- [ ] Add a personal greeting based on the time of day (e.g., "Good morning!").
+- [ ] Add a personal greeting based on the time of day (like "Good morning Wilkister").
 
 - [ ] Integrate a background image API like Unsplash.
 
