@@ -2,7 +2,8 @@
   "manifest_version": 3,
   "name": "Quote New Tab",
   "version": "1.0",
-  "description": "Override the default New Tab page with inspiring quotes",
+  "description": "Override the default New Tab page with inspiring quotes, greeting, and quick links",
+  "permissions": ["topSites"],
   "chrome_url_overrides": {
     "newtab": "newtab.html"
   }
